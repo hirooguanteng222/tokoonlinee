@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>takahiro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="menuKiri">
+                <ul>
+                    <li><a href="#">Tentang kami</a></li>
+                    <li><a href="#">Mitra Kami</a></li>
+                    <li><a href="#">Mulai Berjualan</a></li>
+                    <li><a href="#">Promo</a></li>
+                    <li><a href="#">Kontak</a></li>
+                </ul>
+            </div>
+            <div class="judulKanan">
+                <h1 class="judul">hiroo</h1>
+            </div>
+        </div>
+        <div class="hero"></div>
+        <div class="content cf">
+            <div class="main">
+                <h2>Produk</h2>
+
+                <section class="product" data-kategori="Nike">
+                    <a href="lebron.jpg"><img src="lebron.jpg" alt="nike lebron 20"></a>
+                    <h3>nike lebron 20</h3>
+                    <p class="price">Rp.2.499.000</p>
+
+                    <button class="tombol-beli"
+                        onclick="tampilkanDetailProduk('lebron 20',' Rp.2.499.000','Detail Lengkap tentang Produk lebron 20','lebron.jpg')">Detail
+                        Produk</button>
+
+                    <button class="tombol-keranjang"
+                        onclick="tambahkanProdukKeKeranjang('lebron 20','2.499.000')">Tambahkan ke
+                        Keranjang</button><br />
+                </section>
+
+                <section class="product" data-kategori="Nike">
+                    <a href="WhatsApp Image 2024-03-15 at 10.45.52.jpeg"><img src="WhatsApp Image 2024-03-15 at 10.45.52.jpeg" class="w-100" alt="Jamorant 2" sizes=></a>
+                    <h3>nike Ja 2</h3>
+                    <p class="price">Rp.4.299.000</p>
+
+                    <button class="tombol-beli"
+                        onclick="tampilkanDetailProduk('Nike Jamorant 2','Rp.4.299.000','Detail Lengkap tentang Produk Jamorant 2','WhatsApp Image 2024-03-15 at 10.45.52.jpeg')">Detail
+                        Produk</button>
+
+                    <button class="tombol-keranjang"
+                        onclick="tambahkanProdukKeKeranjang('Jamorant 2','4.299.000')">Tambahkan Ke
+                        Keranjang</button><br />
+                </section>
+
+                <section class="product" data-kategori="Nike">
+                    <a href="nike kd.jpg"><img src="nike kd.jpg" alt="Produk 3"></a>
+                    <h3>KD 17</h3>
+                    <p class="price">Rp.2.599.000</p>
+
+                    <button class="tombol-beli"
+                        onclick="tampilkanDetailProduk('nike KD 17','2.599.000','Detail Lengkap tentang Produk Kd 2','nike kd.jpg')">Detail
+                        Produk</button>
+
+                    <button class="tombol-keranjang"
+                        onclick="tambahkanProdukKeKeranjang('Nike Kd 17','2.599.000')">Tambahkan Ke Keranjang</button><br />
+                </section>
+
+                <section class="product" data-kategori="Anta">
+                    <a href="anta Kt.jpg"><img src="anta Kt.jpg" alt="Produk 4"></a>
+                    <h3>anta kay 1</h3>
+                    <p class="price">Rp.2.999.000</p>
+
+                    <button class="tombol-beli"
+                        onclick="tampilkanDetailProduk('anta kt1','Rp.2.999.000','Detail Lengkap tentang Produk anta kt1','anta Kt.jpg')">Detail
+                        Produk</button>
+
+                    <button class="tombol-keranjang"
+                        onclick="tambahkanProdukKeKeranjang('anta kt 1','2.999.000')">Tambahkan Ke
+                        Keranjang</button><br />
+                </section>
+
+                
+
+
+
+                <!-- Tambahkan lebih banyak produk di sini -->
+
+
+            </div>
+            <div class="sidebar">
+                <h3>Kategori</h3>
+
+                <!-- Kategori Produk -->
+
+                <div class="kategori-pilihan">
+                    <input type="text" id="cariBarang" placeholder="Cari Barang...." onkeyup="cariBarang('T-Shirt')">
+                    <button onclick="filterKategori('all')">Semua</button><br />
+                    <button onclick="filterKategori('Nike')">Nike</button><br />
+                    <button onclick="filterKategori('Anta')">Anta</button><br />
+                </div>
+                <br /><br />
+                <!-- Keranjang Belanja-->
+                <div class="">
+                    <h3>Keranjang Belanja</h3>
+                    <ul id="daftar-keranjang">
+                        <!--Daftar produk yang ditambahkan ke keranjang akan ditampilkan disini-->
+                    </ul>
+                    <p>Total Belanja: <span id="total-belanja">$0.00</span></p>
+                    <a href="ck.html"><button id="checkout" onclick="checkout()">Checkout</button></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p class="copyright">Copyright 2023. hiroo Store</p>
+        </div>
+    </div>
+
+    <!--Detail Produk (popup)-->
+
+    <script>
+
+        function tampilkanDetailProduk(namaProduk, hargaProduk, detailProduk, gambarProduk) {
+            //Buat Elemen notifikasi/popup
+            const popup = document.createElement('div');
+            popup.className = 'popup';
+            popup.innerHTML = `
+
+            <div class="popup-content">
+                <span class="popup-close" onclick="tutupPopup()">&times;</span>
+                <img src="${gambarProduk}" alt="${namaProduk}"></img>
+                <h2>${namaProduk}</h2>
+                <p class="price">Harga : ${hargaProduk}</p>
+                <p>${detailProduk}</p>
+                <button class="tombol-beli">Beli Sekarang</button>
+            </div>
+        `;
+
+            //Tambahkan notifikasi/popup ke body
+            document.body.appendChild(popup);
+        }
+
+        function tutupPopup() {
+            const popup = document.querySelector('.popup');
+            if (popup) {
+                document.body.removeChild(popup);
+            }
+        }
+    </script>
+
+    <!--Kategori Produk-->
+
+    <script>
+        function filterKategori(kategori) {
+            const produk = document.querySelectorAll('.product');
+            for (const produkItem of produk) {
+                const kategoriProduk = produkItem.getAttribute('data-kategori');
+
+                if (kategori == 'all' || kategori === kategoriProduk) {
+                    produkItem.style.display = 'block';
+                } else {
+                    produkItem.style.display = 'none';
+                }
+            }
+        }
+    </script>
+
+    <!--Cari Barang-->
+
+    <script>
+        function cariBarang() {
+            const inputPencarian = document.getElementById('cariBarang');
+            const kataKunci = inputPencarian.value.toLowerCase();
+            const produk = document.querySelectorAll(".product");
+
+            for (const produkItem of produk) {
+                const namaProduk = produkItem.querySelector("h3").textContent.toLowerCase();
+                const deskripsiProduk = produkItem.querySelector("p").textContent.toLowerCase();
+
+                if (namaProduk.includes(kataKunci) || deskripsiProduk.includes(kataKunci)) {
+                    produkItem.style.display = 'block';
+                } else {
+                    produkItem.style.display = 'none';
+                }
+            }
+        }
+    </script>
+
+    <!--Keranjang Belanja-->
+
+    <script>
+        const keranjang = [];
+    const totalBelanja = 0;
+
+    function tambahkanProdukKeKeranjang(namaProduk, harga) {
+    let produkDitemukan = false
+
+    // cek apakah produk yang ditambahkan tersebut sudah ada di keranjang atau belum
+    for(let i=0; i<keranjang.length; i++){
+        if(keranjang[i].nama === namaProduk){
+            //produk sudah ada di dalam keranjang
+            keranjang[i].jumlah++;
+            produkDitemukan = true;
+            break;
+        }
+    }
+
+    if(!produkDitemukan) {
+        keranjang.push({nama: namaProduk, harga:harga, jumlah:1})
+    }
+
+    //panggil fungsi update keranjang
+    updateKeranjang();
+    }
+
+
+    function updateKeranjang() {
+        const daftarKeranjang = document.getElementById('daftar-keranjang');
+        const totalBelanjaElem = document.getElementById('total-belanja');
+        daftarKeranjang.innerHTML = ' ';
+        let total = 0;
+        
+        keranjang.forEach((produk) => {
+            const item = document.createElement('li');
+            const jmSm = produk.harga * produk.jumlah;
+            item.textContent = `${produk.nama} - ${produk.jumlah} - Rp.${produk.harga.toLocaleString
+            ("id-ID")} - ${jmSm.toLocaleString
+            ("id-ID")}`;            daftarKeranjang.appendChild(item);
+            total += produk.harga * produk.jumlah;
+        });
+        totalBelanjaElem.textContent = `Rp. ${total.toLocaleString
+            ("id-ID")}`;
+        //masukkan ke dalam session storage
+        sessionStorage.setItem('keranjangBelanja', JSON.stringify(keranjang));
+    }
+
+      function checkout() {
+        window.location.href = "checkout.html";
+      }
+    </script>
+  </body>
+</html>
